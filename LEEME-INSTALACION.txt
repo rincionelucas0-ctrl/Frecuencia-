@@ -1,0 +1,20 @@
+FRECUENCIA 24/7 — versión instalable (PWA)
+
+ARCHIVOS
+- index.html: aplicación
+- config.js: configuración actual de Supabase y LiveKit (no modificar para esta instalación)
+- manifest.webmanifest: identidad y ajustes de instalación
+- sw.js: caché de la interfaz para mejorar la carga y permitir abrir la carcasa sin conexión
+- icon-192.png / icon-512.png / icon.svg: iconos
+
+CÓMO PUBLICAR
+1. Subí TODOS estos archivos a la misma carpeta pública del sitio web, manteniendo los nombres.
+2. Publicá el sitio mediante HTTPS (por ejemplo, en el hosting actual).
+3. Abrí la URL en Chrome para Android. Usá “Instalar app” dentro de la página o el menú ⋮ > “Instalar aplicación”.
+4. En iPhone/iPad, abrí la URL en Safari > Compartir > “Añadir a pantalla de inicio”.
+
+IMPORTANTE
+- No alcanza con abrir index.html desde el teléfono o descargar el HTML: la instalación PWA requiere HTTPS (o localhost).
+- La radio en vivo, Supabase y la carga de datos necesitan internet. La caché no guarda audio ni convierte la radio en un servicio offline.
+- LiveKit y la configuración existente se mantienen sin cambios.
+- Para actualizar la app, reemplazá los archivos en el hosting. Si la actualización no aparece de inmediato, cerrá y volvé a abrir la aplicación.
