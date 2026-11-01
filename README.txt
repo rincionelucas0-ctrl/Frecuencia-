@@ -1,35 +1,28 @@
-FRECUENCIA — PAQUETE PARA VERCEL
-================================
+FRECUENCIA RADIO ONLINE — DOCUMENTACIÓN DE PRUEBA
+================================================
 
 ARCHIVOS
-- index.html : web pública para los oyentes.
-- admin.html : panel del locutor, compatible con micrófono de Android.
-- config.js  : configuración compartida entre la web y el panel.
-- servidor/  : archivos de ejemplo para preparar el servidor de audio MediaMTX.
+- index.html: página pública de oyentes (LiveKit).
+- admin.html: panel del DJ (LiveKit, micrófono y mezcla local con un archivo de música).
+- config.js: sala y servidor de tokens de desarrollo.
 
-ESTADO HONESTO
-La web y el panel están preparados como frontend estático. La transmisión real NO funcionará hasta que exista un servidor de audio accesible públicamente, con HTTPS, WebRTC y configuración de red adecuada. Vercel publica los archivos de la web, pero no reemplaza ese servidor de audio.
+PUBLICAR EN VERCEL
+1. Subí estos tres archivos a la raíz del proyecto existente, conservando sus nombres.
+2. No reemplaces otros archivos del proyecto que no estén incluidos en este paquete.
+3. Publicá un nuevo deployment.
+4. Panel DJ: /admin.html. Oyentes: /.
 
-PUBLICAR LA WEB EN VERCEL
-1. Subí los archivos index.html, admin.html y config.js a un repositorio de GitHub (en la raíz del repositorio, no dentro de una carpeta adicional).
-2. En Vercel elegí Add New Project e importá ese repositorio.
-3. Deploy. No hace falta comando de build para estos archivos HTML estáticos.
-4. La web pública será la URL que te entregue Vercel.
-5. El panel se abre agregando /admin.html al final de esa URL.
+TRANSMISIÓN
+- La web y el panel usan LiveKit Cloud Development Token Server y la sala configurada como “frecuencia”.
+- En el panel, iniciá la transmisión y aceptá el permiso del micrófono.
+- Podés ajustar el volumen del micrófono, silenciarlo y seleccionar un archivo de audio local para mezclarlo con la voz.
+- En otro dispositivo, abrí la web pública y tocá ESCUCHAR EN VIVO.
+- Usá auriculares para evitar acoples. La reproducción puede requerir interacción del usuario por las políticas del navegador.
 
-CONFIGURAR AUDIO CUANDO HAYA SERVIDOR
-1. Abrí config.js.
-2. Cambiá serverUrl: "" por la URL HTTPS real del servidor, por ejemplo https://radio.tudominio.com.
-3. Conservá channel: "frecuencia" salvo que configures otro canal en MediaMTX.
-4. Volvé a publicar el proyecto en Vercel.
-5. En /admin.html, poné la misma URL y canal, guardá y tocá SALIR EN VIVO.
-6. Abrí la página pública en otro dispositivo y tocá ESCUCHAR EN VIVO.
-
-SEGURIDAD
-- No agregues claves privadas ni tokens secretos a config.js: ese archivo es público.
-- No expongas un servidor de publicación sin autenticación real. El token del formulario solo se manda en el encabezado; no activa autenticación si el servidor no fue configurado para verificarlo.
-- Usá HTTPS. El navegador exige un contexto seguro para permitir el micrófono.
-- La transmisión por navegador puede requerir puertos UDP/TCP y configuración ICE según la red.
-
-MÚSICA
-Esta versión envía el micrófono. No mezcla automáticamente música almacenada en el teléfono. Para salir con voz y música a la vez hace falta una app de mezcla/fuente de audio compatible.
+SEGURIDAD Y LIMITACIONES
+- El ID del servidor de tokens de desarrollo está expuesto en config.js. Es exclusivamente para pruebas; no es apropiado para una radio pública abierta.
+- No hay API Secret en el frontend. Para producción hace falta un backend propio que emita tokens con permisos limitados y autenticación del DJ.
+- La música local se mezcla en el navegador del DJ mientras la pestaña permanece abierta; probá el formato de audio en tu Android.
+- La reconexión automática del oyente vuelve a solicitar credenciales al servidor de desarrollo.
+- Este paquete no implementa todavía chat, votaciones, donaciones, notificaciones push, entrevistas ni programación.
+- No se debe considerar validada la transmisión hasta probar audio real entre dos dispositivos y confirmar permisos/credenciales de LiveKit.
