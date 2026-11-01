@@ -1,0 +1,19 @@
+FRECUENCIA RADIO ONLINE — paquete de prueba LiveKit
+
+ARCHIVOS
+- index.html: página pública de oyentes
+- admin.html: panel para transmitir micrófono desde Android
+- config.js: configuración de LiveKit del proyecto que nos proporcionaste
+
+PUBLICAR EN VERCEL
+1. Extraé el ZIP en tu dispositivo.
+2. En Vercel, importá/subí el contenido de esta carpeta como un proyecto estático.
+3. Los archivos index.html, admin.html y config.js deben quedar en la raíz publicada.
+4. Abrí /admin.html para probar transmisión y la página principal para escuchar.
+
+IMPORTANTE
+- Esta versión usa LiveKit Cloud Development Token Server, pensado solo para desarrollo y pruebas. Cualquier persona que obtenga el ID de pruebas puede solicitar permisos amplios. No es seguro para una radio pública permanente.
+- No contiene ni requiere API Secret.
+- Si la radio se va a publicar para todo el mundo, hay que sustituir el token server de desarrollo por un backend seguro con autenticación.
+- Probá primero con el micrófono y auriculares. La reproducción puede requerir tocar el botón de escuchar por las restricciones del navegador.
+- Para emitir música mezclada con la voz, se necesita una fuente de audio mezclada compatible; esta versión transmite el micrófono del dispositivo.
